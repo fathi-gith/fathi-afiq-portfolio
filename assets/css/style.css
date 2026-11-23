@@ -8,7 +8,7 @@
   --muted: #aaa2c4;
   --accent: #a78bfa;      /* main violet */
   --accent-2: #c9b8ff;    /* soft lavender highlight */
-  --fh: 'Manrope', sans-serif;
+  --fh: 'Bricolage Grotesque', system-ui, sans-serif;
   --fb: 'DM Sans', sans-serif;
 }
 
@@ -210,7 +210,7 @@ a:focus-visible, button:focus-visible {
 
 .content h1 {
   font: 800 clamp(44px, 5.4vw, 72px)/1.05 var(--fh);
-  letter-spacing: -2px;
+  letter-spacing: -1px;
 }
 
 .role {
@@ -336,7 +336,7 @@ a:focus-visible, button:focus-visible {
   .nav a::after { display: none; }
 
   .main { padding: 32px 20px 110px; gap: 36px; }
-  .content h1 { letter-spacing: -1px; }
+  .content h1 { letter-spacing: -0.5px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -347,7 +347,7 @@ a:focus-visible, button:focus-visible {
 /* PORTFOLIO PAGE */
 
 .main-wide { grid-template-columns: 1fr; align-items: start; max-width: 1200px; }
-.main-wide .content h1 { font-size: clamp(34px, 4vw, 48px); letter-spacing: -1px; margin-bottom: 10px; }
+.main-wide .content h1 { font-size: clamp(34px, 4vw, 48px); letter-spacing: -0.5px; margin-bottom: 10px; }
 
 .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 28px 0 14px; }
 
@@ -439,7 +439,7 @@ dialog::backdrop { background: rgba(6, 3, 14, 0.82); backdrop-filter: blur(6px);
 /* RESUME PAGE */
 
 .main-top { align-items: start; }
-.main-top .content h1 { font-size: clamp(34px, 4vw, 48px); letter-spacing: -1px; margin-bottom: 10px; }
+.main-top .content h1 { font-size: clamp(34px, 4vw, 48px); letter-spacing: -0.5px; margin-bottom: 10px; }
 
 .rs-title { font: 700 22px var(--fh); margin: 40px 0 22px; }
 
@@ -662,7 +662,7 @@ button.btn { background: transparent; color: var(--text); font-family: var(--fb)
 
 @media (prefers-reduced-motion: reduce) { .box.hov:hover { transform: none; } }
 
-.main-about .content h1 { font-size: clamp(34px, 4vw, 48px); letter-spacing: -1px; line-height: 1.1; }
+.main-about .content h1 { font-size: clamp(34px, 4vw, 48px); letter-spacing: -0.5px; line-height: 1.1; }
 
 /* SCROLL TIMELINE (line + dots draw in while scrolling) */
 
@@ -697,7 +697,7 @@ button.btn { background: transparent; color: var(--text); font-family: var(--fb)
 /* RESUME PAGE */
 
 .main-resume { grid-template-columns: 1fr; align-items: start; max-width: 1300px; gap: 0; }
-.main-resume h1 { font: 800 clamp(34px, 4vw, 48px)/1.1 var(--fh); letter-spacing: -1px; }
+.main-resume h1 { font: 800 clamp(34px, 4vw, 48px)/1.1 var(--fh); letter-spacing: -0.5px; }
 
 .page-head { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; margin-bottom: 36px; }
 .page-head .about-title { margin-bottom: 0 !important; }
@@ -798,7 +798,7 @@ button.btn { background: transparent; color: var(--text); font-family: var(--fb)
 
 
 /* STANDARD PAGE TITLE + SEPARATOR (Portfolio, Contact; Resume has its own) */
-h1.about-title { font: 800 clamp(34px, 4vw, 48px)/1.1 var(--fh); letter-spacing: -1px; }
+h1.about-title { font: 800 clamp(34px, 4vw, 48px)/1.1 var(--fh); letter-spacing: -0.5px; }
 .lead { padding-bottom: 26px; margin-bottom: 30px; border-bottom: 1px solid var(--border); }
 .content .lead p { margin: 0; }
 .content .lead + p.email { margin-top: 0; }
