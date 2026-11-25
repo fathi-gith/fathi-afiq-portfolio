@@ -1,18 +1,13 @@
 // FATHI AFIQ — PORTFOLIO
 // Shared by every page. Each feature only runs if its elements exist.
 
-// PERFORMANCE: the site has a "lite" mode (no drifting glows, grain or glass blur).
-// It is used when (in this order):
-//   1. you or a visitor chose it from the search panel ("Use lighter effects" / "Use full effects"),
-//   2. the address has ?lite=1 (or ?lite=0 to force the full version), good for testing,
-//   3. the device looks weak (4 or fewer CPU cores, 4 GB or less memory, or data saver on),
-//   4. the page measured itself and could not run smoothly (checked once per visit, after loading).
+// PERFORMANCE: adaptive "lite" mode (no drifting glows, grain or glass blur).
 (() => {
   const root = document.documentElement;
-  const get = (store, key) => { try { return window[store].getItem(key); } catch (e) { return null; } };
-  const set = (store, key, val) => { try { window[store].setItem(key, val); } catch (e) {} };
+  const get = (store, key) => { try { return window[store].getItem(key); } catch { return null; } };
+  const set = (store, key, val) => { try { window[store].setItem(key, val); } catch {} };
 
-  const chosen = get("localStorage", "fa-lite");              // "1" lite, "0" full: an explicit choice always wins
+  const chosen = get("localStorage", "fa-lite");
   const force = new URLSearchParams(location.search).get("lite");
   const c = navigator.connection;
   const weak = (navigator.deviceMemory && navigator.deviceMemory <= 4) ||
@@ -26,7 +21,6 @@
   if (chosen === "0") lite = false;
   if (lite) root.classList.add("lite");
 
-  // self-test: if the full version cannot keep up, switch to lite (once per visit)
   if (!lite && chosen === null && force === null && get("sessionStorage", "fa-lite-ok") !== "1") {
     addEventListener("load", () => setTimeout(() => {
       if (document.hidden) return;
@@ -37,10 +31,9 @@
         last = now;
         if (times.length < 90) { requestAnimationFrame(step); return; }
         const t = times.slice(5).sort((x, y) => x - y);
-        if (t[Math.floor(t.length / 2)] > 28) {                 // slower than about 36 frames per second
+        if (t[Math.floor(t.length / 2)] > 28) {
           root.classList.add("lite");
           set("sessionStorage", "fa-lite-auto", "1");
-          console.info("Portfolio: lighter effects enabled automatically for smoother browsing.");
         } else {
           set("sessionStorage", "fa-lite-ok", "1");
         }
@@ -60,8 +53,8 @@
 })();
 
 // ---------------------------------------------------------------
-// LOADING SCREEN: plays once per visit (first page only).
-// A pen tool draws the FA monogram with anchor points, a counter runs, then the screen splits open.
+// PEN-TOOL FA LOADING SCREEN: plays once per visit (snappy ~850ms).
+// Draws the FA monogram with vector anchor squares & crop marks, then splits open.
 // Skipped for repeat pages in the same visit and for visitors who prefer reduced motion.
 // ---------------------------------------------------------------
 (() => {
@@ -70,28 +63,27 @@
   try {
     skip = skip || sessionStorage.getItem("fa-loader") === "1";
     sessionStorage.setItem("fa-loader", "1");
-  } catch (e) { skip = true; }
+  } catch { skip = true; }
   if (skip) { root.classList.add("ready"); return; }
 
-  const anchors = [[22,130,.2],[22,30,.4],[68,30,.6],[22,80,.5],[60,80,.75],[88,130,.65],[122,30,.9],[156,130,1.15],[98,100,1.05],[146,100,1.25]]
+  const anchors = [[22,130,.12],[22,30,.24],[68,30,.36],[22,80,.3],[60,80,.44],[88,130,.4],[122,30,.54],[156,130,.68],[98,100,.62],[146,100,.72]]
     .map(([x, y, d]) => `<rect class="anchor" x="${x - 3.5}" y="${y - 3.5}" width="7" height="7" style="--d:${d}s"/>`).join("");
 
   const loader = document.createElement("div");
   loader.className = "loader";
-  loader.setAttribute("role", "status");
-  loader.setAttribute("aria-label", "Loading portfolio");
+  loader.setAttribute("aria-hidden", "true");
   loader.innerHTML = `
     <div class="lp top"></div><div class="lp bot"></div>
     <div class="guide h"></div><div class="guide v"></div>
     <svg class="pen" viewBox="0 0 180 160" aria-hidden="true">
       <defs><linearGradient id="penGrad" gradientUnits="userSpaceOnUse" x1="20" y1="30" x2="160" y2="130"><stop offset="0" stop-color="#c3adff"/><stop offset="1" stop-color="#9b7bff"/></linearGradient></defs>
       <path class="crop" d="M2 14V2H14M166 2H178V14M178 146V158H166M14 158H2V146"/>
-      <path class="glyph" pathLength="1" style="--d:.2s;--t:.4s" d="M22 130V30H68"/>
-      <path class="glyph" pathLength="1" style="--d:.5s;--t:.25s" d="M22 80H60"/>
-      <path class="glyph" pathLength="1" style="--d:.65s;--t:.5s" d="M88 130L122 30L156 130"/>
-      <path class="glyph" pathLength="1" style="--d:1.05s;--t:.2s" d="M98 100H146"/>
-      <path class="handle" style="--d:1s" d="M100 30H144"/>
-      <circle class="knob" style="--d:1s" cx="100" cy="30" r="3"/><circle class="knob" style="--d:1s" cx="144" cy="30" r="3"/>
+      <path class="glyph" pathLength="1" style="--d:.12s;--t:.28s" d="M22 130V30H68"/>
+      <path class="glyph" pathLength="1" style="--d:.32s;--t:.18s" d="M22 80H60"/>
+      <path class="glyph" pathLength="1" style="--d:.42s;--t:.32s" d="M88 130L122 30L156 130"/>
+      <path class="glyph" pathLength="1" style="--d:.64s;--t:.16s" d="M98 100H146"/>
+      <path class="handle" style="--d:.6s" d="M100 30H144"/>
+      <circle class="knob" style="--d:.6s" cx="100" cy="30" r="3"/><circle class="knob" style="--d:.6s" cx="144" cy="30" r="3"/>
       ${anchors}
     </svg>
     <div class="meta"><div class="pct">0</div><span class="lbl">Loading portfolio</span><div class="bar"><i></i></div></div>`;
@@ -99,27 +91,28 @@
   root.classList.add("ready", "is-loading");
 
   const pct = loader.querySelector(".pct");
-  const MIN = 1500, MAX = 4500;
+  const barFill = loader.querySelector(".bar i");
+  const MIN = 850, MAX = 3200;
   let loaded = document.readyState === "complete";
   addEventListener("load", () => { loaded = true; });
   const t0 = performance.now();
 
   const finish = () => {
     pct.textContent = "100";
-    loader.style.setProperty("--p", 1);
+    if (barFill) barFill.style.transform = "scaleX(1)";
     setTimeout(() => {
       loader.classList.add("out");
       root.classList.remove("is-loading");
-      setTimeout(() => loader.remove(), 1200);
-    }, 180);
+      setTimeout(() => loader.remove(), 950);
+    }, 110);
   };
 
   const tick = now => {
     const t = now - t0;
     let p = Math.min(1, t / MIN);
-    if (!loaded && t < MAX) p = Math.min(p, 0.92);   // wait at 92% until the page has really loaded
+    if (!loaded && t < MAX) p = Math.min(p, 0.92);
     const e = 1 - Math.pow(1 - p, 2);
-    loader.style.setProperty("--p", e);
+    if (barFill) barFill.style.transform = `scaleX(${e})`;
     pct.textContent = Math.round(e * 100);
     if ((p >= 1 && loaded) || t >= MAX) return finish();
     requestAnimationFrame(tick);
@@ -128,11 +121,12 @@
 })();
 
 document.addEventListener("DOMContentLoaded", () => {
+  const prefersReduced = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const finePointer = () => matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-  // PROFILE PHOTO: tries profile.webp, .jpg, .jpeg, .png in assets/images/profile/
-  // If none exists, the "FA" monogram stays visible.
+  // PROFILE PHOTO: tries profile.webp, .jpg, .jpeg, .png
   const photo = document.querySelector(".avatar img");
-  if (photo) {
+  if (photo && !photo.getAttribute("src")) {
     const base = "assets/images/profile/profile";
     const types = ["webp", "jpg", "jpeg", "png"];
     let t = 0;
@@ -144,12 +138,27 @@ document.addEventListener("DOMContentLoaded", () => {
     photo.src = `${base}.${types[0]}`;
   }
 
-  // ROLE TICKER: repeat the list once so the loop has no gap
+  // ROLE TICKER: repeat list once for seamless loop
   document.querySelectorAll(".ticker-track").forEach(t => { t.innerHTML += t.innerHTML; });
 
-  // HOME CARD STACK: your featured projects are stacked like cards.
-  // Drag the top card away (any direction) to reveal the next one, or click it to open the project.
-  // Cards are read from portfolio.html; the gradient placeholder cards in index.html stay if that fails.
+  // SIDEBAR TOOLTIPS: initial hover delay, then instant 0ms switch across adjacent nav icons
+  const navRail = document.querySelector(".nav");
+  if (navRail) {
+    let warmTimer = null;
+    navRail.addEventListener("pointerenter", () => {
+      if (!finePointer()) return;
+      clearTimeout(warmTimer);
+      warmTimer = setTimeout(() => navRail.classList.add("tip-warm"), 240);
+    });
+    navRail.addEventListener("pointerleave", () => {
+      clearTimeout(warmTimer);
+      navRail.classList.remove("tip-warm");
+    });
+  }
+
+  // ---------------------------------------------------------------
+  // HOME CARD STACK: 1:1 drag + velocity momentum fling + multi-touch guard + keyboard safety
+  // ---------------------------------------------------------------
   const slidesBox = document.querySelector(".slides");
   const dotsBox = document.querySelector(".dots");
   let stackTimer;
@@ -160,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const cards = [...slidesBox.querySelectorAll(".slide")];
     if (!cards.length) return;
 
-    cards.forEach(card => {                       // every card gets a "face" layer that can tilt and sweep
+    cards.forEach(card => {
       if (card.querySelector(".face")) return;
       const face = document.createElement("div");
       face.className = "face";
@@ -169,54 +178,85 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const n = cards.length;
-    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
     let current = 0;
     let hovering = false;
+    let focused = false;
     let drag = null;
     let blockClick = false;
 
     const render = () => {
-      cards.forEach((c, i) => { c.dataset.pos = (i - current + n) % n; });
-      [...dotsBox.children].forEach((d, k) => d.classList.toggle("on", k === current));
+      cards.forEach((c, i) => {
+        const pos = (i - current + n) % n;
+        c.dataset.pos = pos;
+        const isTop = pos === 0;
+        const link = c.querySelector(".slide-link");
+        if (link) {
+          link.tabIndex = isTop ? 0 : -1;
+          link.setAttribute("aria-hidden", String(!isTop));
+        }
+        c.setAttribute("aria-hidden", String(!isTop));
+      });
+      [...dotsBox.children].forEach((d, k) => {
+        d.classList.toggle("on", k === current);
+        d.setAttribute("aria-current", k === current ? "true" : "false");
+      });
     };
 
-    // send the top card flying off in a direction; the stack moves up behind it
-    const fling = (card, dx, dy) => {
+    const fling = (card, dx, dy, speed = 0.6) => {
+      if (!card) return;
       const len = Math.hypot(dx, dy) || 1;
+      const dur = Math.max(240, Math.min(420, Math.round(420 - speed * 140)));
       card.style.zIndex = "9";
-      card.style.transition = "transform 0.5s cubic-bezier(0.4, 0, 0.8, 0.45), opacity 0.4s ease";
-      card.style.transform = `translate(${(dx / len) * 620}px, ${(dy / len) * 620}px) rotate(${dx * 0.05}deg)`;
+      card.style.transition = `transform ${dur}ms cubic-bezier(0.23, 1, 0.32, 1), opacity ${Math.round(dur * 0.85)}ms ease`;
+      card.style.transform = `translate(${(dx / len) * 580}px, ${(dy / len) * 580}px) rotate(${Math.max(-22, Math.min(22, dx * 0.05))}deg)`;
       card.style.opacity = "0";
       current = (current + 1) % n;
       render();
-      setTimeout(() => {                          // reset it silently, now waiting at the back of the stack
+      setTimeout(() => {
         card.style.transition = "none";
         card.style.transform = "";
         card.style.opacity = "";
         card.style.zIndex = "";
         void card.offsetWidth;
         card.style.transition = "";
-      }, 540);
+      }, dur + 30);
     };
 
     dotsBox.replaceChildren();
     cards.forEach((_, k) => {
       const dot = document.createElement("button");
+      dot.type = "button";
       dot.setAttribute("aria-label", `Show project ${k + 1}`);
       dot.addEventListener("click", () => { current = k; render(); });
       dotsBox.append(dot);
     });
 
     slidesBox.onpointerdown = e => {
+      if (drag) return; // multi-touch protection
       const card = e.target.closest('.slide[data-pos="0"]');
       if (!card || (e.pointerType === "mouse" && e.button !== 0)) return;
-      drag = { card, id: e.pointerId, x: e.clientX, y: e.clientY, dx: 0, dy: 0, moved: false };
+      const now = performance.now();
+      drag = {
+        card,
+        id: e.pointerId,
+        x: e.clientX,
+        y: e.clientY,
+        dx: 0,
+        dy: 0,
+        t0: now,
+        hist: [{ x: e.clientX, y: e.clientY, t: now }],
+        moved: false
+      };
     };
 
     slidesBox.onpointermove = e => {
       if (drag && e.pointerId === drag.id) {
         drag.dx = e.clientX - drag.x;
         drag.dy = e.clientY - drag.y;
+        const now = performance.now();
+        drag.hist.push({ x: e.clientX, y: e.clientY, t: now });
+        if (drag.hist.length > 5) drag.hist.shift();
+
         if (!drag.moved && Math.hypot(drag.dx, drag.dy) > 6) {
           drag.moved = true;
           drag.card.classList.add("dragging");
@@ -224,51 +264,66 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         if (drag.moved) {
           drag.card.style.transition = "none";
-          drag.card.style.transform = `translate(${drag.dx}px, ${drag.dy}px) rotate(${drag.dx * 0.05}deg)`;
+          drag.card.style.transform = `translate(${drag.dx}px, ${drag.dy}px) rotate(${drag.dx * 0.045}deg)`;
         }
         return;
       }
-      if (e.pointerType !== "mouse" || document.documentElement.classList.contains("lite")) return;      // tilt toward the pointer
+
+      if (e.pointerType !== "mouse" || prefersReduced() || document.documentElement.classList.contains("lite") || !finePointer()) return;
       const face = slidesBox.querySelector('.slide[data-pos="0"] .face');
       if (!face || !e.target.closest('.slide[data-pos="0"]')) return;
       const r = face.getBoundingClientRect();
-      face.style.setProperty("--ry", (((e.clientX - r.left) / r.width - 0.5) * 9).toFixed(2) + "deg");
-      face.style.setProperty("--rx", ((0.5 - (e.clientY - r.top) / r.height) * 9).toFixed(2) + "deg");
+      const ry = (((e.clientX - r.left) / r.width - 0.5) * 8).toFixed(2);
+      const rx = ((0.5 - (e.clientY - r.top) / r.height) * 8).toFixed(2);
+      face.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.03)`;
     };
 
     const endDrag = e => {
       if (!drag || e.pointerId !== drag.id) return;
-      const { card, dx, dy, moved } = drag;
+      const { card, dx, dy, moved, hist } = drag;
       drag = null;
       card.classList.remove("dragging");
-      if (!moved) return;                         // a plain click: the link opens the project
+      if (!moved) return;
+
       blockClick = true;
       setTimeout(() => { blockClick = false; }, 60);
-      if (Math.hypot(dx, dy) > 90) {
-        fling(card, dx, dy);
-      } else {                                    // not far enough: spring back
-        card.style.transition = "transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1)";
+
+      // Velocity-based momentum dismissal (Apple / Emil Kowalski)
+      const first = hist[0];
+      const last = hist[hist.length - 1];
+      const dt = Math.max(1, last.t - first.t);
+      const vx = (last.x - first.x) / dt;
+      const vy = (last.y - first.y) / dt;
+      const velocity = Math.hypot(vx, vy); // px per ms
+      const dist = Math.hypot(dx, dy);
+
+      if (dist > 85 || velocity > 0.22) {
+        fling(card, Math.abs(vx) > 0.05 ? vx : dx, Math.abs(vy) > 0.05 ? vy : dy, velocity);
+      } else {
+        card.style.transition = "transform 360ms cubic-bezier(0.23, 1, 0.32, 1)";
         card.style.transform = "";
-        setTimeout(() => { card.style.transition = ""; }, 480);
+        setTimeout(() => { card.style.transition = ""; }, 380);
       }
     };
+
     slidesBox.onpointerup = endDrag;
     slidesBox.onpointercancel = endDrag;
-
     slidesBox.addEventListener("click", e => { if (blockClick) { e.preventDefault(); e.stopPropagation(); } }, true);
 
     slidesBox.onpointerleave = () => {
       hovering = false;
       const face = slidesBox.querySelector('.slide[data-pos="0"] .face');
-      if (face) { face.style.removeProperty("--rx"); face.style.removeProperty("--ry"); }
+      if (face) face.style.transform = "";
     };
     slidesBox.onpointerenter = () => { hovering = true; };
+    slidesBox.addEventListener("focusin", () => { focused = true; });
+    slidesBox.addEventListener("focusout", () => { focused = false; });
 
     render();
-    if (!reduced && !document.documentElement.classList.contains("lite")) {   // gentle autoplay: pauses while you hover or drag
+    if (!prefersReduced() && !document.documentElement.classList.contains("lite")) {
       stackTimer = setInterval(() => {
-        if (hovering || drag || document.hidden) return;
-        fling(cards.find(c => c.dataset.pos === "0"), 0, 1);
+        if (hovering || focused || drag || document.hidden) return;
+        fling(cards.find(c => c.dataset.pos === "0"), -0.35, 1, 0.45);
       }, 6500);
     }
   };
@@ -288,7 +343,7 @@ document.addEventListener("DOMContentLoaded", () => {
           .map(c => ({ card: c, n: all.indexOf(c) }));
         if (!list.length) return;
 
-        slidesBox.replaceChildren(...list.map(({ card, n }) => {
+        slidesBox.replaceChildren(...list.map(({ card, n }, idx) => {
           const fig = document.createElement("figure");
           fig.className = "slide";
           fig.setAttribute("style", card.getAttribute("style") || "");
@@ -301,6 +356,7 @@ document.addEventListener("DOMContentLoaded", () => {
           img.alt = "";
           img.draggable = false;
           img.decoding = "async";
+          if (idx === 0) img.fetchPriority = "high";
           if (card.dataset.pos) img.style.objectPosition = card.dataset.pos;
           img.addEventListener("error", () => img.remove());
 
@@ -318,7 +374,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const badge = document.createElement("span");
             badge.className = "play";
             badge.setAttribute("aria-hidden", "true");
-            badge.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z"/></svg>';
+            badge.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z"/></svg>';
             face.append(badge);
           }
           fig.append(face);
@@ -326,10 +382,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }));
         buildStack();
       })
-      .catch(() => {}); // keep the placeholder cards
+      .catch(() => {});
   }
 
-  // PORTFOLIO PAGE: thumbnails, category filter, viewer
+  // ---------------------------------------------------------------
+  // PORTFOLIO PAGE: Thumbnails, Curated Default Sort, Empty State, 1:1 Swipe Lightbox
+  // ---------------------------------------------------------------
   const works = [...document.querySelectorAll(".work")];
   const dlg = document.getElementById("viewer");
 
@@ -338,15 +396,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const count = document.querySelector(".count");
     const labelOf = cat => (filters.find(f => f.dataset.filter === cat) || {}).textContent || "";
 
-    count.textContent = `${works.length} project${works.length === 1 ? "" : "s"}`;   // always matches how many you have
+    count.textContent = `${works.length} project${works.length === 1 ? "" : "s"}`;
 
-    // every card remembers its original number (its place in portfolio.html); links like ?open=3 use it
     works.forEach((w, i) => { w.dataset.n = i; });
     const grid = works[0].parentElement;
     const comparers = {
+      mine: (a, b) => a.dataset.n - b.dataset.n,
       az: (a, b) => (a.dataset.title || "").localeCompare(b.dataset.title || "", undefined, { sensitivity: "base", numeric: true }),
-      za: (a, b) => (b.dataset.title || "").localeCompare(a.dataset.title || "", undefined, { sensitivity: "base", numeric: true }),
-      mine: (a, b) => a.dataset.n - b.dataset.n
+      za: (a, b) => (b.dataset.title || "").localeCompare(a.dataset.title || "", undefined, { sensitivity: "base", numeric: true })
     };
 
     const toolrow = document.createElement("div");
@@ -355,34 +412,49 @@ document.addEventListener("DOMContentLoaded", () => {
     toolrow.append(count);
     const sortbar = document.createElement("div");
     sortbar.className = "sortbar";
-    sortbar.innerHTML = '<label for="sort">Sort by</label><div class="selectwrap"><select id="sort"><option value="az">A to Z</option><option value="za">Z to A</option><option value="mine">My arrangement</option></select><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></div>';
+    sortbar.innerHTML = '<label for="sort">Sort by</label><div class="selectwrap"><select id="sort"><option value="mine">Curated</option><option value="az">A to Z</option><option value="za">Z to A</option></select><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></div>';
     toolrow.append(sortbar);
     const sorter = sortbar.querySelector("select");
-    const applySort = () => [...works].sort(comparers[sorter.value]).forEach(w => grid.append(w));
-    sorter.addEventListener("change", applySort);
-    applySort();                                   // default: alphabetical by title
 
-    // card text and thumbnail come from the data- attributes, so each project is edited in one place
-    works.forEach(w => {
-      w.querySelector("strong").textContent = w.dataset.title || "";
-      w.querySelector("small").textContent = labelOf(w.dataset.cat);
-      if (w.dataset.video) {                          // little play button so visitors know it is a video
+    const emptyBox = document.createElement("div");
+    emptyBox.className = "grid-empty";
+    emptyBox.hidden = true;
+    emptyBox.innerHTML =
+      '<h3></h3>' +
+      '<p>New projects for this category are currently being prepared and will be uploaded soon.</p>' +
+      '<button type="button" class="btn btn-primary" data-reset-filter>View all projects</button>';
+    grid.append(emptyBox);
+    const emptyHeading = emptyBox.querySelector("h3");
+    emptyBox.querySelector("[data-reset-filter]").addEventListener("click", () => {
+      filters.find(b => b.dataset.filter === "all")?.click();
+    });
+
+    const applySort = () => {
+      [...works].sort(comparers[sorter.value]).forEach(w => grid.insertBefore(w, emptyBox));
+    };
+    sorter.addEventListener("change", applySort);
+    applySort();
+
+    works.forEach((w, idx) => {
+      const strong = w.querySelector("strong");
+      const small = w.querySelector("small");
+      if (strong) strong.textContent = w.dataset.title || "";
+      if (small) small.textContent = labelOf(w.dataset.cat);
+      if (w.dataset.video) {
         const badge = document.createElement("span");
         badge.className = "play";
         badge.setAttribute("aria-hidden", "true");
-        badge.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z"/></svg>';
+        badge.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z"/></svg>';
         w.querySelector(".thumb").append(badge);
       }
       if (!w.dataset.img) return;
       const img = new Image();
       img.src = w.dataset.img;
       img.alt = "";
-      img.loading = "lazy";
+      img.loading = idx < 4 ? "eager" : "lazy";
+      img.decoding = "async";
       if (w.dataset.pos) img.style.objectPosition = w.dataset.pos;
-      img.addEventListener("error", () => {
-        console.warn("Portfolio image not found:", w.dataset.img); // path to check
-        img.remove(); // keeps the coloured card instead of a broken icon
-      });
+      img.addEventListener("error", () => img.remove());
       w.querySelector(".thumb").append(img);
     });
 
@@ -395,14 +467,19 @@ document.addEventListener("DOMContentLoaded", () => {
         if (show) n++;
       });
       count.textContent = `${n} project${n === 1 ? "" : "s"}`;
+      if (n === 0) {
+        emptyHeading.textContent = `${btn.textContent.trim()} — coming soon`;
+        emptyBox.hidden = false;
+      } else {
+        emptyBox.hidden = true;
+      }
     }));
 
-    // supports links like portfolio.html?category=multimedia
     const wanted = new URLSearchParams(location.search).get("category");
     const start = filters.find(b => b.dataset.filter === wanted);
     if (start) start.click();
 
-    // ---- VIEWER: one artwork at a time, always fully visible; arrows, thumbnails, swipe, smooth open/close ----
+    // ---- VIEWER: View Transitions morph + 1:1 rubber-band swipe + scroll lock ----
     const stage = dlg.querySelector(".v-stage");
     const slot = dlg.querySelector(".v-slide");
     const thumbsBox = dlg.querySelector(".v-thumbs");
@@ -410,7 +487,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const nextBtn = dlg.querySelector(".v-next");
     const counter = dlg.querySelector(".v-count");
     const metaEl = dlg.querySelector(".v-meta");
-    const canMorph = "startViewTransition" in document && !matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const canMorph = () => "startViewTransition" in document && !prefersReduced();
 
     let slides = [];
     let current = 0;
@@ -422,7 +499,7 @@ document.addEventListener("DOMContentLoaded", () => {
       let el;
 
       if (s.video) {
-        const isFile = /\.(mp4|webm|mov)(\?|$)/i.test(s.video);            // a video file in your folder, or an embed link
+        const isFile = /\.(mp4|webm|mov)(\?|$)/i.test(s.video);
         el = document.createElement(isFile ? "video" : "iframe");
         el.src = s.video;
         if (isFile) {
@@ -434,19 +511,19 @@ document.addEventListener("DOMContentLoaded", () => {
           el.title = source.dataset.title;
           el.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen";
           el.allowFullscreen = true;
-          el.referrerPolicy = "strict-origin-when-cross-origin";           // YouTube needs this to play embeds
+          el.referrerPolicy = "strict-origin-when-cross-origin";
         }
-        const [rw, rh] = (source.dataset.ratio || "16/9").split("/").map(Number);   // data-ratio="9/16" for vertical videos
+        const [rw, rh] = (source.dataset.ratio || "16/9").split("/").map(Number);
         el.classList.add("is-video");
         el.style.setProperty("--rw", rw || 16);
         el.style.setProperty("--rh", rh || 9);
       } else if (s.src) {
         el = new Image();
         el.src = s.src;
-        el.alt = source.dataset.title;
+        el.alt = `${source.dataset.title || "Project"} — slide ${current + 1} of ${slides.length}`;
         el.decoding = "async";
+        el.draggable = false;
         el.addEventListener("error", () => {
-          console.warn("Portfolio image not found:", s.src);
           const note = document.createElement("p");
           note.className = "v-missing";
           note.textContent = "This image could not be loaded.";
@@ -458,7 +535,7 @@ document.addEventListener("DOMContentLoaded", () => {
         el.setAttribute("style", source.getAttribute("style") || "");
       }
 
-      if (animate) el.classList.add("fade-in");
+      if (animate && !prefersReduced()) el.classList.add("fade-in");
       slot.replaceChildren(el);
       counter.textContent = `${current + 1} / ${slides.length}`;
       thumbsBox.querySelectorAll("button").forEach((b, k) => b.setAttribute("aria-current", String(k === current)));
@@ -485,7 +562,8 @@ document.addEventListener("DOMContentLoaded", () => {
           const t = new Image();
           t.src = s.thumb;
           t.alt = "";
-          t.addEventListener("error", () => t.remove()); // missing file: leave an empty tile, no broken icon
+          t.loading = "lazy";
+          t.addEventListener("error", () => t.remove());
           b.append(t);
         }
         b.addEventListener("click", () => show(k, true));
@@ -498,14 +576,14 @@ document.addEventListener("DOMContentLoaded", () => {
       metaEl.hidden = !w.dataset.meta;
       dlg.querySelector(".v-desc").textContent = w.dataset.desc || "";
       show(0, false);
+      document.documentElement.classList.add("modal-open");
 
-      if (!canMorph || instant) {
+      if (!canMorph() || instant) {
         dlg.classList.add("pop");
         dlg.showModal();
         return;
       }
 
-      // the card's picture grows into the viewer
       const thumb = w.querySelector(".thumb");
       thumb.style.viewTransitionName = "project";
       document.startViewTransition(() => {
@@ -519,9 +597,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const closeViewer = () => {
       if (!dlg.open) return;
-      if (!canMorph || !source) { dlg.close(); return; }
+      if (!canMorph() || !source) { dlg.close(); return; }
 
-      // ...and shrinks back into the card
       const thumb = source.querySelector(".thumb");
       const el = slot.firstElementChild;
       if (el) el.style.viewTransitionName = "project";
@@ -534,23 +611,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     works.forEach(w => w.addEventListener("click", () => openViewer(w)));
 
-    // cards tilt a little toward the pointer (mouse only)
+    // Direct-transform card tilt (mouse + fine pointer only; no CSS variable inheritance)
     works.forEach(w => {
       w.addEventListener("pointermove", e => {
-        if (e.pointerType !== "mouse" || document.documentElement.classList.contains("lite")) return;
+        if (e.pointerType !== "mouse" || prefersReduced() || document.documentElement.classList.contains("lite") || !finePointer()) return;
         const r = w.getBoundingClientRect();
-        w.style.setProperty("--ry", (((e.clientX - r.left) / r.width - 0.5) * 8).toFixed(2) + "deg");
-        w.style.setProperty("--rx", ((0.5 - (e.clientY - r.top) / r.height) * 8).toFixed(2) + "deg");
+        const ry = (((e.clientX - r.left) / r.width - 0.5) * 7).toFixed(2);
+        const rx = ((0.5 - (e.clientY - r.top) / r.height) * 7).toFixed(2);
+        w.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.028)`;
       });
-      w.addEventListener("pointerleave", () => { w.style.removeProperty("--rx"); w.style.removeProperty("--ry"); });
+      w.addEventListener("pointerleave", () => { w.style.transform = ""; });
     });
+
     prevBtn.addEventListener("click", () => show(current - 1, true));
     nextBtn.addEventListener("click", () => show(current + 1, true));
     dlg.querySelector(".v-close").addEventListener("click", closeViewer);
     dlg.addEventListener("click", e => { if (e.target === dlg) closeViewer(); });
     dlg.addEventListener("cancel", e => { e.preventDefault(); closeViewer(); });
     dlg.addEventListener("animationend", e => { if (e.target === dlg) dlg.classList.remove("pop"); });
-    dlg.addEventListener("close", () => slot.replaceChildren()); // also stops any playing video
+    dlg.addEventListener("close", () => {
+      document.documentElement.classList.remove("modal-open");
+      slot.replaceChildren();
+    });
 
     dlg.addEventListener("keydown", e => {
       if (slides.length < 2) return;
@@ -558,26 +640,64 @@ document.addEventListener("DOMContentLoaded", () => {
       if (e.key === "ArrowLeft") show(current - 1, true);
     });
 
-    // arriving from a Home slide: portfolio.html?open=3 opens the 4th project
+    // Safe ?open=N deep link (guards empty string)
     const openParam = new URLSearchParams(location.search).get("open");
-    if (openParam !== null && works[Number(openParam)]) {
-      const target = works[Number(openParam)];
-      target.scrollIntoView({ block: "center" });
-      setTimeout(() => openViewer(target, true), 250);
+    if (openParam !== null && openParam.trim() !== "") {
+      const idx = Number(openParam);
+      if (Number.isInteger(idx) && works[idx]) {
+        works[idx].scrollIntoView({ block: "center" });
+        setTimeout(() => openViewer(works[idx], true), 200);
+      }
     }
 
-    let startX = null;
-    stage.addEventListener("pointerdown", e => { startX = e.clientX; });
-    stage.addEventListener("pointerup", e => {
-      if (startX === null) return;
-      const dx = e.clientX - startX;
-      startX = null;
-      if (Math.abs(dx) > 50 && slides.length > 1) show(current + (dx < 0 ? 1 : -1), true);
+    // Prevent wheel scroll chaining behind open viewer
+    stage.addEventListener("wheel", e => e.preventDefault(), { passive: false });
+
+    // 1:1 interactive swipe with velocity commit + Apple rubber-band damping
+    let swipe = null;
+    const rubberband = (d, dim, c = 0.45) => (d * dim * c) / (dim + c * Math.abs(d));
+
+    stage.addEventListener("pointerdown", e => {
+      if (swipe || e.target.closest("button, video, iframe")) return;
+      swipe = { id: e.pointerId, x0: e.clientX, t0: performance.now(), dx: 0, moved: false };
     });
+
+    stage.addEventListener("pointermove", e => {
+      if (!swipe || e.pointerId !== swipe.id) return;
+      const el = slot.firstElementChild;
+      if (!el) return;
+      swipe.dx = e.clientX - swipe.x0;
+      if (!swipe.moved && Math.abs(swipe.dx) > 8) {
+        swipe.moved = true;
+        stage.setPointerCapture(e.pointerId);
+      }
+      if (swipe.moved) {
+        const offset = slides.length > 1 ? swipe.dx : rubberband(swipe.dx, stage.clientWidth || 400);
+        el.style.transition = "none";
+        el.style.transform = `translateX(${offset}px)`;
+      }
+    });
+
+    const endSwipe = e => {
+      if (!swipe || e.pointerId !== swipe.id) return;
+      const { dx, t0, moved } = swipe;
+      swipe = null;
+      const el = slot.firstElementChild;
+      if (!moved || !el) return;
+      const velocity = Math.abs(dx) / Math.max(1, performance.now() - t0);
+      if (slides.length > 1 && (Math.abs(dx) > 55 || velocity > 0.22)) {
+        show(current + (dx < 0 ? 1 : -1), true);
+      } else {
+        el.style.transition = "transform 280ms cubic-bezier(0.23, 1, 0.32, 1)";
+        el.style.transform = "";
+        setTimeout(() => { if (el) el.style.transition = ""; }, 300);
+      }
+    };
+    stage.addEventListener("pointerup", endSwipe);
+    stage.addEventListener("pointercancel", endSwipe);
   }
 
-  // PORTFOLIO PAGE: case study cards above the project grid.
-  // To add or change a case study, edit this list.
+  // PORTFOLIO PAGE: case study cards
   const CASE_STUDIES = [
     { href: "case-carton-dieline.html", meta: "Kooka Paper | Workflow automation", title: "Automating Carton Dieline Creation", text: "An Illustrator tool that generates complete carton dielines from a few measurements.", tag: "10+ min to under 1 min" },
     { href: "case-hasmadi-ecommerce.html", meta: "Hasmadi Textile | 2022 to 2023", title: "E-commerce Website Development", text: "Built and managed the company's WordPress online store, from hosting setup to payment integration.", tag: "WordPress" },
@@ -590,7 +710,7 @@ document.addEventListener("DOMContentLoaded", () => {
     wrap.innerHTML =
       '<h2 class="sub-title" id="case-studies">Case studies</h2><div class="case-grid">' +
       CASE_STUDIES.map(c =>
-        `<a class="box hov draw case-card" href="${c.href}"><small>${c.meta}</small><h3>${c.title}</h3><p>${c.text}</p><span class="tag">${c.tag}</span><span class="go">Read case study <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></a>`
+        `<a class="box hov draw case-card" href="${c.href}"><small>${c.meta}</small><h3>${c.title}</h3><p>${c.text}</p><span class="tag">${c.tag}</span><span class="go">Read case study <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span></a>`
       ).join("") +
       '</div><h2 class="sub-title">All work</h2>';
     filtersBar.before(...wrap.childNodes);
@@ -598,8 +718,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ---------------------------------------------------------------
-  // TOP BAR + SEARCH PANEL + TOAST
-  // The search panel opens from the top bar, or with Ctrl+K (Cmd+K on Mac), or "/".
+  // TOP BAR + INSTANT KEYBOARD SEARCH PALETTE + INTERRUPTIBLE TOAST
   // ---------------------------------------------------------------
   const CAT_LABEL = { "branding-packaging": "Branding & packaging", "commercial": "Commercial", "marketing-social": "Marketing & social", "multimedia": "Multimedia & motion", "exhibition-print": "Exhibition & print", "personal-artwork": "Personal artwork" };
   const EMAIL = "fathiafiqdesign@gmail.com";
@@ -610,16 +729,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const t = document.createElement("div");
     t.className = "toast";
     t.setAttribute("role", "status");
+    t.setAttribute("aria-live", "polite");
     t.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
     t.append(msg);
     document.body.append(t);
     setTimeout(() => t.classList.add("out"), 2400);
-    setTimeout(() => t.remove(), 2800);
+    setTimeout(() => t.remove(), 2700);
   };
 
   const sideEl = document.querySelector(".sidebar");
   if (sideEl) {
-    const isMac = /Mac|iPhone|iPad/.test(navigator.platform);
+    const isMac = /Mac|iPhone|iPad/i.test(navigator.userAgentData?.platform || navigator.userAgent);
     const bar = document.createElement("header");
     bar.className = "topbar";
     bar.innerHTML =
@@ -627,12 +747,27 @@ document.addEventListener("DOMContentLoaded", () => {
       '<div class="tb-right"><span class="status"><i></i>Open to opportunities</span><a class="btn btn-primary tb-btn" href="contact.html">Let\'s talk</a></div>';
     sideEl.after(bar);
 
+    // Subtle mobile footer socials strip (restores socials on mobile without cluttering desktop)
+    const mainEl = document.querySelector(".main");
+    if (mainEl && !document.body.classList.contains("page-contact")) {
+      const ms = document.createElement("footer");
+      ms.className = "mobile-socials";
+      ms.innerHTML =
+        '<span>© 2026 Fathi Afiq</span>' +
+        '<div class="ms-links">' +
+        '<a href="https://www.behance.net/fathiafiq" target="_blank" rel="noopener">Behance</a>' +
+        '<a href="https://www.linkedin.com/in/fathi-afiq-fv97/" target="_blank" rel="noopener">LinkedIn</a>' +
+        '<a href="https://www.instagram.com/fathii_afiiq/" target="_blank" rel="noopener">Instagram</a>' +
+        '</div>';
+      mainEl.append(ms);
+    }
+
     const palette = document.createElement("dialog");
     palette.className = "palette";
     palette.setAttribute("aria-label", "Search");
     palette.innerHTML =
-      `<div class="pal-top">${SVG_SEARCH}<input type="text" placeholder="Search projects, pages, case studies…" aria-label="Search" role="combobox" aria-expanded="true" aria-controls="pal-list" autocomplete="off" spellcheck="false"><kbd>Esc</kbd></div>` +
-      '<div class="pal-list" id="pal-list" role="listbox"></div>' +
+      `<div class="pal-top">${SVG_SEARCH}<input type="text" placeholder="Search projects, pages, case studies…" aria-label="Search" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-controls="pal-list" autocomplete="off" spellcheck="false"><kbd>Esc</kbd></div>` +
+      '<div class="pal-list" id="pal-list" role="listbox" aria-label="Search results"></div>' +
       '<div class="pal-foot"><span><kbd>↑</kbd><kbd>↓</kbd>move</span><span><kbd>Enter</kbd>open</span><span><kbd>Esc</kbd>close</span></div>';
     document.body.append(palette);
 
@@ -660,7 +795,7 @@ document.addEventListener("DOMContentLoaded", () => {
         kw: "effects lite full performance slow smooth animation blur",
         run: () => {
           document.documentElement.classList.toggle("lite", !isLite);
-          try { localStorage.setItem("fa-lite", isLite ? "0" : "1"); } catch (e) {}
+          try { localStorage.setItem("fa-lite", isLite ? "0" : "1"); } catch {}
           toast(isLite ? "Full effects on" : "Lighter effects on");
         }
       };
@@ -673,7 +808,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
           const r = await fetch("portfolio.html");
           cards = [...new DOMParser().parseFromString(await r.text(), "text/html").querySelectorAll(".work")];
-        } catch (e) { return []; }
+        } catch { return []; }
       }
       return cards.map((c, i) => ({ title: c.dataset.title || "", cat: CAT_LABEL[c.dataset.cat] || "", n: Number(c.dataset.n ?? i) }));
     })());
@@ -682,7 +817,12 @@ document.addEventListener("DOMContentLoaded", () => {
     let active = 0;
 
     const mark = () => {
-      [...list.querySelectorAll(".pal-item")].forEach((el, k) => {
+      const rows = [...list.querySelectorAll(".pal-item")];
+      if (!rows.length) {
+        input.removeAttribute("aria-activedescendant");
+        return;
+      }
+      rows.forEach((el, k) => {
         el.setAttribute("aria-selected", String(k === active));
         if (k === active) { el.scrollIntoView({ block: "nearest" }); input.setAttribute("aria-activedescendant", el.id); }
       });
@@ -711,17 +851,25 @@ document.addEventListener("DOMContentLoaded", () => {
       items = [];
       list.replaceChildren();
       if (!groups.length) {
+        input.removeAttribute("aria-activedescendant");
         const empty = document.createElement("p");
         empty.className = "pal-empty";
         empty.textContent = `No results for "${q}"`;
         list.append(empty);
         return;
       }
-      groups.forEach(([title, arr]) => {
+      groups.forEach(([title, arr], gIdx) => {
+        const grp = document.createElement("div");
+        grp.setAttribute("role", "group");
+        const hId = `pal-g-${gIdx}`;
+        grp.setAttribute("aria-labelledby", hId);
+
         const h = document.createElement("div");
         h.className = "pal-h";
+        h.id = hId;
         h.textContent = title;
-        list.append(h);
+        grp.append(h);
+
         arr.forEach(item => {
           const row = document.createElement("div");
           row.className = "pal-item";
@@ -733,47 +881,67 @@ document.addEventListener("DOMContentLoaded", () => {
           const idx = items.length;
           row.addEventListener("click", () => choose(item));
           row.addEventListener("pointermove", () => { if (active !== idx) { active = idx; mark(); } });
-          list.append(row);
+          grp.append(row);
           items.push(item);
         });
+        list.append(grp);
       });
       active = 0;
       mark();
     };
 
-    const openSearch = () => {
+    const openSearch = (fromKeyboard = false) => {
       if (palette.open) return;
+      palette.classList.toggle("instant", fromKeyboard);
+      document.documentElement.classList.add("modal-open");
       palette.showModal();
       input.value = "";
       render("");
       input.focus();
     };
 
-    bar.querySelector(".search-pill").addEventListener("click", openSearch);
+    bar.querySelector(".search-pill").addEventListener("click", () => openSearch(false));
     input.addEventListener("input", () => render(input.value));
     input.addEventListener("keydown", e => {
+      if (!items.length) return;
       if (e.key === "ArrowDown") { e.preventDefault(); active = Math.min(active + 1, items.length - 1); mark(); }
       if (e.key === "ArrowUp") { e.preventDefault(); active = Math.max(active - 1, 0); mark(); }
       if (e.key === "Enter" && items[active]) { e.preventDefault(); choose(items[active]); }
     });
     palette.addEventListener("click", e => { if (e.target === palette) palette.close(); });
+    palette.addEventListener("close", () => {
+      if (!document.querySelector("dialog[open]")) document.documentElement.classList.remove("modal-open");
+    });
 
     document.addEventListener("keydown", e => {
-      const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName || "");
-      if ((e.key.toLowerCase() === "k" && (e.ctrlKey || e.metaKey)) || (e.key === "/" && !typing && !document.querySelector("dialog[open]"))) {
+      const ae = document.activeElement;
+      const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(ae?.tagName || "") || ae?.isContentEditable;
+      const openK = e.key.toLowerCase() === "k" && (e.ctrlKey || e.metaKey) && !e.altKey;
+      const openSlash = e.key === "/" && !e.ctrlKey && !e.metaKey && !e.altKey && !typing && !document.querySelector("dialog[open]");
+      if (openK || openSlash) {
         e.preventDefault();
-        openSearch();
+        openSearch(true);
       }
     });
   }
 
-  // SCROLL TIMELINES: the line grows and the dots appear as you scroll down.
-  // Progress only moves forward, so scrolling back up leaves everything in place.
+  // SCROLL TIMELINES: leaf .tl-fill transform: scaleY() (zero subtree style recalc)
   const timelines = [...document.querySelectorAll(".tl")];
   if (timelines.length) {
-    const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const still = prefersReduced();
     const reached = new Map(timelines.map(tl => [tl, 0]));
     let queued = false;
+
+    const fills = new Map();
+    timelines.forEach(tl => {
+      tl.querySelectorAll(".tl-group").forEach(g => {
+        const line = document.createElement("span");
+        line.className = "tl-fill";
+        line.setAttribute("aria-hidden", "true");
+        g.prepend(line);
+        fills.set(g, line);
+      });
+    });
 
     const update = () => {
       queued = false;
@@ -781,7 +949,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       timelines.forEach(tl => {
         const r = tl.getBoundingClientRect();
-        let p = (innerHeight * 0.75 - r.top) / r.height;
+        let p = (innerHeight * 0.78 - r.top) / r.height;
         if (still || atBottom) p = 1;
         p = Math.max(reached.get(tl), Math.min(1, Math.max(0, p)));
         reached.set(tl, p);
@@ -789,7 +957,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const reach = p * tl.offsetHeight;
         tl.querySelectorAll(".tl-group").forEach(g => {
           const f = Math.min(1, Math.max(0, (reach - g.offsetTop) / g.offsetHeight));
-          g.style.setProperty("--f", f);
+          const line = fills.get(g);
+          if (line) line.style.transform = `scaleY(${f})`;
           if (still || g.offsetTop + 10 <= reach) g.classList.add("on");
         });
       });
@@ -805,10 +974,9 @@ document.addEventListener("DOMContentLoaded", () => {
     update();
   }
 
-  // RESUME SKILL CARDS: intro animation plays once, when the card scrolls into view
+  // RESUME SKILL CARDS: snappy stagger (35ms) — never leaves boxes half-blank
   const intros = [...document.querySelectorAll("[data-intro]")];
-  const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (intros.length && !calm && "IntersectionObserver" in window) {
+  if (intros.length && !prefersReduced() && "IntersectionObserver" in window) {
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (!e.isIntersecting) return;
@@ -816,7 +984,7 @@ document.addEventListener("DOMContentLoaded", () => {
         e.target.classList.add("intro-play");
         io.unobserve(e.target);
       });
-    }, { threshold: 0.25 });
+    }, { threshold: 0.12 });
 
     intros.forEach(card => {
       card.querySelectorAll(".tool, .bul li, .lvl").forEach((item, i) => item.style.setProperty("--i", i));
@@ -825,18 +993,35 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // CONTACT PAGE: copy email address
+  // CONTACT PAGE: blur-masked Copy email morph + unified toast
   const copyBtn = document.querySelector("[data-copy]");
   if (copyBtn) {
     const note = document.querySelector(".copy-note");
+    const defaultLabel = copyBtn.textContent;
+    copyBtn.innerHTML = `<span class="btn-label">${defaultLabel}</span>`;
+    const labelEl = copyBtn.querySelector(".btn-label");
+    let resetTimer = null;
+
+    const morphLabel = (next, copied) => {
+      copyBtn.classList.add("is-morphing");
+      setTimeout(() => {
+        labelEl.textContent = next;
+        copyBtn.classList.toggle("is-copied", copied);
+        copyBtn.classList.remove("is-morphing");
+      }, 95);
+    };
+
     copyBtn.addEventListener("click", async () => {
       try {
         await navigator.clipboard.writeText(copyBtn.dataset.copy);
-        note.textContent = "Email address copied.";
+        morphLabel("Copied ✓", true);
+        if (note) note.textContent = "Email address copied.";
+        toast("Email address copied");
+        clearTimeout(resetTimer);
+        resetTimer = setTimeout(() => morphLabel(defaultLabel, false), 2200);
       } catch {
-        note.textContent = "Couldn't copy it automatically. Please select the address and copy it.";
+        if (note) note.textContent = "Couldn't copy it automatically. Please select the address and copy it.";
       }
     });
   }
-
 });

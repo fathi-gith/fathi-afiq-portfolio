@@ -2,9 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
   <meta name="description" content="Case study: an Illustrator tool that generates carton dielines automatically, cutting preparation time from 10+ minutes to under 1 minute.">
   <meta name="theme-color" content="#0a0716">
+  <meta property="og:title" content="Automating Carton Dieline Creation | Fathi Afiq">
+  <meta property="og:description" content="Adobe Illustrator ExtendScript tool that generates corrugated carton dielines automatically in under 1 minute.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="assets/images/profile/profile.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
   <title>Automating Carton Dieline Creation | Fathi Afiq</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,6 +19,7 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   <div class="app">
 
     <!-- SIDEBAR: same block as index.html; only aria-current moves -->
@@ -20,11 +27,11 @@
       <div class="profile">
         <div class="avatar">
           <span>FA</span>
-          <img alt="Fathi Afiq">
+          <img src="assets/images/profile/profile.webp" alt="Fathi Afiq">
         </div>
         <div class="who">
-          <h2>Fathi <span class="af">Afiq</span></h2>
-          <div class="ticker" aria-label="Senior Graphic Designer, Multimedia and Creative Production">
+          <p class="who-name">Fathi <span class="af">Afiq</span></p>
+          <div class="ticker" role="note" aria-label="Senior Graphic Designer, Multimedia and Creative Production">
             <div class="ticker-track" aria-hidden="true">
               <span>Senior Graphic Designer</span>
               <span>Multimedia Production</span>
@@ -38,19 +45,19 @@
 
       <nav class="nav" aria-label="Main">
         <a href="index.html" data-label="Home" aria-label="Home">
-          <svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></svg>
         </a>
         <a href="about.html" data-label="About" aria-label="About">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
         </a>
         <a href="resume.html" data-label="Resume" aria-label="Resume">
-          <svg viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h6"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h6"/></svg>
         </a>
         <a href="portfolio.html" data-label="Portfolio" aria-label="Portfolio" aria-current="page">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
         </a>
         <a href="contact.html" data-label="Contact" aria-label="Contact">
-          <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
         </a>
       </nav>
 
@@ -61,10 +68,10 @@
       </div>
     </aside>
 
-    <main class="main main-about">
+    <main class="main main-about" id="main-content">
 
       <section class="content cs">
-        <a class="back" href="portfolio.html"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg> Back to portfolio</a>
+        <a class="back" href="portfolio.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg> Back to portfolio</a>
         <h1 class="about-title">Automating Carton Dieline Creation</h1>
         <div class="lead"><p>An internal Adobe Illustrator automation tool that creates corrugated shipping box dielines from user-defined carton dimensions.</p></div>
         <h2>The challenge</h2>
@@ -76,9 +83,73 @@
           <div class="box step"><b>2</b><p>Select the carton colour</p></div>
           <div class="box step"><b>3</b><p>Generate the dieline in Illustrator</p></div>
         </div>
-        <!-- ADD A SCREENSHOT of the tool panel or the generated dieline here, e.g.:
-        <figure class="case-fig"><img src="assets/images/case-studies/carton-tool-panel.webp" alt="The carton dieline tool inside Illustrator"><figcaption>The tool inside Illustrator</figcaption></figure>
-        -->
+        <figure class="case-fig">
+          <div class="case-diagram">
+            <svg viewBox="0 0 850 370" role="img" aria-labelledby="dieline-svg-title dieline-svg-desc">
+              <title id="dieline-svg-title">Parametric corrugated carton dieline generator workflow</title>
+              <desc id="dieline-svg-desc">Workflow diagram showing Length, Width, Height and Carton Colour inputs generating a print-ready RSC corrugated carton dieline with cut and crease paths in Adobe Illustrator.</desc>
+              <defs>
+                <pattern id="dlGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(214,200,255,0.06)" stroke-width="1"/>
+                </pattern>
+              </defs>
+              <rect width="850" height="370" fill="url(#dlGrid)"/>
+              <rect x="26" y="48" width="212" height="266" rx="12" fill="rgba(38,27,70,0.55)" stroke="rgba(214,200,255,0.32)" stroke-width="1.2"/>
+              <line x1="26" y1="84" x2="238" y2="84" stroke="rgba(214,200,255,0.16)"/>
+              <text x="42" y="71" fill="#f3effd" font-family="Bricolage Grotesque, sans-serif" font-size="13" font-weight="700">Carton Dieline (.jsx)</text>
+              <text x="42" y="110" fill="#aaa2c4" font-family="DM Sans, sans-serif" font-size="11">Length (L)</text>
+              <rect x="42" y="118" width="180" height="28" rx="6" fill="rgba(13,9,32,0.8)" stroke="rgba(214,200,255,0.22)"/>
+              <text x="52" y="136" fill="#f3effd" font-family="DM Sans, sans-serif" font-size="12">400 mm</text>
+              <text x="42" y="166" fill="#aaa2c4" font-family="DM Sans, sans-serif" font-size="11">Width (W)</text>
+              <rect x="42" y="174" width="180" height="28" rx="6" fill="rgba(13,9,32,0.8)" stroke="rgba(214,200,255,0.22)"/>
+              <text x="52" y="192" fill="#f3effd" font-family="DM Sans, sans-serif" font-size="12">300 mm</text>
+              <text x="42" y="222" fill="#aaa2c4" font-family="DM Sans, sans-serif" font-size="11">Height (H) &amp; Board</text>
+              <rect x="42" y="230" width="108" height="28" rx="6" fill="rgba(13,9,32,0.8)" stroke="rgba(214,200,255,0.22)"/>
+              <text x="52" y="248" fill="#f3effd" font-family="DM Sans, sans-serif" font-size="12">260 mm</text>
+              <rect x="158" y="230" width="64" height="28" rx="6" fill="#9a7248" stroke="#c9b8ff" stroke-width="1"/>
+              <text x="173" y="248" fill="#14092e" font-family="DM Sans, sans-serif" font-size="11" font-weight="700">Kraft</text>
+              <rect x="42" y="272" width="180" height="30" rx="8" fill="#a78bfa"/>
+              <text x="80" y="291" fill="#14092e" font-family="DM Sans, sans-serif" font-size="12" font-weight="700">Generate Dieline</text>
+
+              <path d="M248 181h34m-7-6 7 6-7 6" fill="none" stroke="#c9b8ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+
+              <g transform="translate(298, 42)">
+                <path d="M26 78 L4 90 L4 202 L26 214" fill="rgba(167,139,250,0.08)" stroke="#f3effd" stroke-width="1.6"/>
+                <rect x="26" y="16" width="136" height="62" fill="rgba(167,139,250,0.10)" stroke="#f3effd" stroke-width="1.6"/>
+                <rect x="166" y="16" width="102" height="62" fill="rgba(167,139,250,0.06)" stroke="#f3effd" stroke-width="1.6"/>
+                <rect x="272" y="16" width="136" height="62" fill="rgba(167,139,250,0.10)" stroke="#f3effd" stroke-width="1.6"/>
+                <rect x="412" y="16" width="84" height="62" fill="rgba(167,139,250,0.06)" stroke="#f3effd" stroke-width="1.6"/>
+                <rect x="26" y="78" width="470" height="136" fill="rgba(167,139,250,0.12)" stroke="#f3effd" stroke-width="1.6"/>
+                <rect x="26" y="214" width="136" height="62" fill="rgba(167,139,250,0.10)" stroke="#f3effd" stroke-width="1.6"/>
+                <rect x="166" y="214" width="102" height="62" fill="rgba(167,139,250,0.06)" stroke="#f3effd" stroke-width="1.6"/>
+                <rect x="272" y="214" width="136" height="62" fill="rgba(167,139,250,0.10)" stroke="#f3effd" stroke-width="1.6"/>
+                <rect x="412" y="214" width="84" height="62" fill="rgba(167,139,250,0.06)" stroke="#f3effd" stroke-width="1.6"/>
+                <g stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="5 4">
+                  <line x1="26" y1="78" x2="496" y2="78"/>
+                  <line x1="26" y1="214" x2="496" y2="214"/>
+                  <line x1="26" y1="78" x2="26" y2="214"/>
+                  <line x1="164" y1="78" x2="164" y2="214"/>
+                  <line x1="270" y1="78" x2="270" y2="214"/>
+                  <line x1="410" y1="78" x2="410" y2="214"/>
+                </g>
+                <text x="94" y="150" text-anchor="middle" fill="#f3effd" font-family="Bricolage Grotesque, sans-serif" font-size="13" font-weight="700">L</text>
+                <text x="217" y="150" text-anchor="middle" fill="#f3effd" font-family="Bricolage Grotesque, sans-serif" font-size="13" font-weight="700">W</text>
+                <text x="340" y="150" text-anchor="middle" fill="#f3effd" font-family="Bricolage Grotesque, sans-serif" font-size="13" font-weight="700">L</text>
+                <text x="454" y="150" text-anchor="middle" fill="#f3effd" font-family="Bricolage Grotesque, sans-serif" font-size="13" font-weight="700">W</text>
+                <line x1="510" y1="78" x2="510" y2="214" stroke="#c9b8ff" stroke-width="1.2"/>
+                <line x1="505" y1="78" x2="515" y2="78" stroke="#c9b8ff" stroke-width="1.2"/>
+                <line x1="505" y1="214" x2="515" y2="214" stroke="#c9b8ff" stroke-width="1.2"/>
+                <text x="521" y="150" fill="#c9b8ff" font-family="DM Sans, sans-serif" font-size="12" font-weight="700">H</text>
+                <line x1="26" y1="302" x2="50" y2="302" stroke="#f3effd" stroke-width="1.8"/>
+                <text x="58" y="306" fill="#aaa2c4" font-family="DM Sans, sans-serif" font-size="11">Cut path</text>
+                <line x1="130" y1="302" x2="154" y2="302" stroke="#a78bfa" stroke-width="1.6" stroke-dasharray="5 4"/>
+                <text x="162" y="306" fill="#aaa2c4" font-family="DM Sans, sans-serif" font-size="11">Crease / fold path</text>
+                <text x="496" y="306" text-anchor="end" fill="#c9b8ff" font-family="DM Sans, sans-serif" font-size="11">Output: Print-ready .ai layers</text>
+              </g>
+            </svg>
+          </div>
+          <figcaption>Workflow diagram: parametric dimension inputs in Illustrator generating a print-ready corrugated carton dieline.</figcaption>
+        </figure>
         <h2>Development process</h2>
         <p>The tool was developed using JavaScript / ExtendScript, with AI-assisted coding to support implementation. A key development consideration was ensuring accurate overall dieline dimensions and spacing based on the specified carton measurements.</p>
         <h2>Results and impact</h2>
@@ -93,7 +164,7 @@
 
       </section>
 
-      <aside class="side" aria-label="Project details">
+      <aside class="side side-sticky" aria-label="Project details">
         <div class="box"><ul class="plain"><li><strong>Company</strong><span>Kooka Paper Manufacturing</span></li><li><strong>Project type</strong><span>Workflow automation and creative technology</span></li><li><strong>Role</strong><span>Concept development, workflow design and AI-assisted development</span></li><li><strong>Tools</strong><span>Adobe Illustrator, JavaScript / ExtendScript (.jsx), AI-assisted coding</span></li></ul></div>
         <h2 class="side-title">More case studies</h2><a class="box hov draw mini" href="case-hasmadi-ecommerce.html"><strong>E-commerce Website Development</strong><span>Hasmadi Textile, 2022 to 2023</span></a><a class="box hov draw mini" href="case-portfolio-website.html"><strong>Personal Portfolio Website</strong><span>Personal branding and web design</span></a>
       </aside>

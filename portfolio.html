@@ -2,9 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
   <meta name="description" content="Portfolio of Fathi Afiq, Senior Graphic Designer: branding, packaging, digital marketing, multimedia and exhibition projects, plus case studies.">
   <meta name="theme-color" content="#0a0716">
+  <meta property="og:title" content="Portfolio | Fathi Afiq">
+  <meta property="og:description" content="Selected exhibition, print, digital marketing, e-commerce, and poster design projects by Fathi Afiq.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/exhibition-print/exhibition print-kooka-01.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
   <title>Portfolio | Fathi Afiq</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,6 +19,7 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   <div class="app">
 
     <!-- SIDEBAR: same block as index.html; only aria-current moves -->
@@ -20,11 +27,11 @@
       <div class="profile">
         <div class="avatar">
           <span>FA</span>
-          <img alt="Fathi Afiq">
+          <img src="assets/images/profile/profile.webp" alt="Fathi Afiq">
         </div>
         <div class="who">
-          <h2>Fathi <span class="af">Afiq</span></h2>
-          <div class="ticker" aria-label="Senior Graphic Designer, Multimedia and Creative Production">
+          <p class="who-name">Fathi <span class="af">Afiq</span></p>
+          <div class="ticker" role="note" aria-label="Senior Graphic Designer, Multimedia and Creative Production">
             <div class="ticker-track" aria-hidden="true">
               <span>Senior Graphic Designer</span>
               <span>Multimedia Production</span>
@@ -38,19 +45,19 @@
 
       <nav class="nav" aria-label="Main">
         <a href="index.html" data-label="Home" aria-label="Home">
-          <svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></svg>
         </a>
         <a href="about.html" data-label="About" aria-label="About">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
         </a>
         <a href="resume.html" data-label="Resume" aria-label="Resume">
-          <svg viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h6"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h6"/></svg>
         </a>
         <a href="portfolio.html" data-label="Portfolio" aria-label="Portfolio" aria-current="page">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
         </a>
         <a href="contact.html" data-label="Contact" aria-label="Contact">
-          <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
         </a>
       </nav>
 
@@ -61,26 +68,26 @@
       </div>
     </aside>
 
-    <main class="main main-wide">
+    <main class="main main-wide" id="main-content">
       <section class="content">
         <h1 class="about-title">Portfolio</h1>
         <div class="lead"><p>Selected work across branding, packaging, marketing, motion and print. Click any project to see it larger.</p></div>
 
         <div class="filters" role="group" aria-label="Filter by category">
-          <button data-filter="all" aria-pressed="true">All</button>
-          <button data-filter="branding-packaging" aria-pressed="false">Branding &amp; packaging</button>
-          <button data-filter="commercial" aria-pressed="false">Commercial</button>
-          <button data-filter="marketing-social" aria-pressed="false">Marketing &amp; social</button>
-          <button data-filter="multimedia" aria-pressed="false">Multimedia &amp; motion</button>
-          <button data-filter="exhibition-print" aria-pressed="false">Exhibition &amp; print</button>
-          <button data-filter="personal-artwork" aria-pressed="false">Personal artwork</button>
+          <button type="button" data-filter="all" aria-pressed="true">All</button>
+          <button type="button" data-filter="branding-packaging" aria-pressed="false">Branding &amp; packaging</button>
+          <button type="button" data-filter="commercial" aria-pressed="false">Commercial</button>
+          <button type="button" data-filter="marketing-social" aria-pressed="false">Marketing &amp; social</button>
+          <button type="button" data-filter="multimedia" aria-pressed="false">Multimedia &amp; motion</button>
+          <button type="button" data-filter="exhibition-print" aria-pressed="false">Exhibition &amp; print</button>
+          <button type="button" data-filter="personal-artwork" aria-pressed="false">Personal artwork</button>
         </div>
-        <p class="count" aria-live="polite">6 projects</p>
+        <p class="count" aria-live="polite">17 projects</p>
 
         <!--
           HOW TO ADD A PROJECT
-          1. Copy one whole <button class="work"> ... </button> block below and paste it where you want it (order = order on the page).
-          2. Change only these attributes (the card text is filled in automatically):
+          1. Copy one whole <button type="button" class="work"> ... </button> block below and paste it where you want it (order = curated order on the page).
+          2. Change only these attributes (use forward slashes "/" in all paths):
              data-cat    category folder name: branding-packaging | commercial | marketing-social | multimedia | exhibition-print | personal-artwork
              data-title  project name (shown on the card and in the viewer)
              data-desc   2-3 sentences: the brief, your role, the result
@@ -92,117 +99,7 @@
           3. Keep the style="--a:..;--b:.." part; it is the colour shown while the image loads.
         -->
         <div class="grid">
-          <button class="work"
-            data-cat="marketing-social"
-            data-title="Hesmart — Product Showcase"
-            data-desc="Created product-focused social media visuals showcasing Kitmens's Oven features, technology and capabilities."
-            data-img="assets/images/marketing-social/Kitmens/kitmens-social-collection-01.webp"
-            data-more="assets/images/marketing-social/Kitmens/kitmens-social-collection-01-02.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-01-03.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-01-04.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-01-05.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-01-06.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-01-07.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-01-08.webp"
-            data-meta="Client: Kitmens Sdn. Bhd."
-            style="--a:#3c315f;--b:#172340">
-            <span class="thumb"></span>
-            <span class="work-info"><strong></strong><small></small></span>
-          </button>
-          <button class="work"
-            data-cat="marketing-social"
-            data-title="Stand Mixer — Product Promotion"
-            data-desc="Designed promotional visuals highlighting the stand mixer's versatility and multifunctional attachments."
-            data-img="assets/images/marketing-social/Kitmens/kitmens-social-collection-02.webp"
-            data-more="assets/images/marketing-social/Kitmens/kitmens-social-collection-02-10.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-02-11.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-02-12.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-02-13.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-02-14.webp"
-            data-meta="Client: Kitmens Sdn. Bhd."
-            style="--a:#3c315f;--b:#172340">
-            <span class="thumb"></span>
-            <span class="work-info"><strong></strong><small></small></span>
-          </button>
-          <button class="work"
-            data-cat="marketing-social"
-            data-title="Kooka Paper- Social Media Campaign"
-            data-desc="Designed promotional social media visuals highlighting Kooka Paper's products, manufacturing capabilities and sustainability initiatives."
-            data-img="assets/images/marketing-social/kooka-social-collection.webp"
-            data-more="assets/images/marketing-social/kooka-post-02.webp, assets/images/marketing-social/kooka-post-03.webp, assets/images/marketing-social/kooka-post-04.webp, assets/images/marketing-social/kooka-post-05.webp, assets/images/marketing-social/kooka-post-06.webp, assets/images/marketing-social/kooka-post-07.webp, assets/images/marketing-social/kooka-post-08.webp, assets/images/marketing-social/kooka-post-09.webp, assets/images/marketing-social/kooka-post-10.webp, assets/images/marketing-social/kooka-post-11.webp"
-            data-meta="Client: Kooka Paper Manufacturing Sdn. Bhd."
-            style="--a:#3c315f;--b:#172340">
-            <span class="thumb"></span>
-            <span class="work-info"><strong></strong><small></small></span>
-          </button>
-          <button class="work"
-            data-cat="marketing-social"
-            data-title="Seazons- Social Media Campaign"
-            data-desc="Created engaging social media visuals to promote Seazons products and strengthen brand awareness."
-            data-img="assets/images/marketing-social/seazons-social-collection.webp"
-            data-more="assets/images/marketing-social/seazons-post-01.webp, assets/images/marketing-social/seazons-post-02.webp, assets/images/marketing-social/seazons-post-03.webp, assets/images/marketing-social/seazons-post-04.webp, assets/images/marketing-social/seazons-post-05.webp, assets/images/marketing-social/seazons-post-06.webp, assets/images/marketing-social/seazons-post-07.webp, assets/images/marketing-social/seazons-post-08.webp, assets/images/marketing-social/seazons-post-09.webp, assets/images/marketing-social/seazons-post-10.webp, assets/images/marketing-social/seazons-post-11.webp, assets/images/marketing-social/seazons-post-12.webp, assets/images/marketing-social/seazons-post-13.webp"
-            data-meta="Client: Kooka Paper Manufacturing Sdn. Bhd."
-            style="--a:#3c315f;--b:#172340">
-            <span class="thumb"></span>
-            <span class="work-info"><strong></strong><small></small></span>
-          </button>
-          <button class="work"
-            data-cat="marketing-social"
-            data-title="Mother's Day — Social Media Campaign"
-            data-desc="Created a seasonal campaign combining Mother's Day messaging with product promotions and gift ideas."
-            data-img="assets/images/marketing-social/Kitmens/kitmens-social-collection-03.webp"
-            data-more="assets/images/marketing-social/Kitmens/kitmens-social-collection-03-16.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-03-17.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-03-18.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-03-19.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-03-20.webp"
-            data-meta="Client: Kitmens Sdn. Bhd."
-            style="--a:#3c315f;--b:#172340">
-            <span class="thumb"></span>
-            <span class="work-info"><strong></strong><small></small></span>
-          </button>
-          <button class="work"
-            data-cat="marketing-social"
-            data-title="Cordless Hand Mixer — Product Campaign"
-            data-desc="Designed engaging promotional content highlighting the convenience and features of the cordless hand mixer."
-            data-img="assets/images/marketing-social/Kitmens/kitmens-social-collection-04.webp"
-            data-more="assets/images/marketing-social/Kitmens/kitmens-social-collection-04-22.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-04-23.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-04-24.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-04-25.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-04-26.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-04-27.webp"
-            data-meta="Client: Kitmens Sdn. Bhd."
-            style="--a:#3c315f;--b:#172340">
-            <span class="thumb"></span>
-            <span class="work-info"><strong></strong><small></small></span>
-          </button>
-          <button class="work"
-            data-cat="marketing-social"
-            data-title="Kitmens Exclusive Showcase — Event Promotion"
-            data-desc="Developed event promotional materials featuring the exclusive showcase, baking demonstrations and guest chefs."
-            data-img="assets/images/marketing-social/Kitmens/kitmens-social-collection-05.webp"
-            data-more="assets/images/marketing-social/Kitmens/kitmens-social-collection-05-29.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-05-30.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-05-31.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-05-32.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-05-33.webp"
-            data-meta="Client: Kitmens Sdn. Bhd."
-            style="--a:#3c315f;--b:#172340">
-            <span class="thumb"></span>
-            <span class="work-info"><strong></strong><small></small></span>
-          </button>
-          <button class="work"
-            data-cat="marketing-social"
-            data-title="Stand Mixer — Features & Benefits"
-            data-desc="Created product marketing visuals communicating key features, usability and benefits of Kitmens kitchen appliances."
-            data-img="assets/images/marketing-social/Kitmens/kitmens-social-collection-06.webp"
-            data-more="assets/images/marketing-social/Kitmens/kitmens-social-collection-06-35.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-06-36.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-06-37.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-06-38.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-06-39.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-06-40.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-06-41.webp"
-            data-meta="Client: Kitmens Sdn. Bhd."
-            style="--a:#3c315f;--b:#172340">
-            <span class="thumb"></span>
-            <span class="work-info"><strong></strong><small></small></span>
-          </button>
-          <button class="work"
-            data-cat="marketing-social"
-            data-title="Compact Stand Mixer — Product Promotion"
-            data-desc="Designed promotional visuals highlighting the compact design, functionality and everyday convenience of the stand mixer."
-            data-img="assets/images/marketing-social/Kitmens/kitmens-social-collection-07.webp"
-            data-more="assets/images/marketing-social/Kitmens/kitmens-social-collection-07-43.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-07-44.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-07-45.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-07-46.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-07-47.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-07-48.webp"
-            data-meta="Client: Kitmens Sdn. Bhd."
-            style="--a:#3c315f;--b:#172340">
-            <span class="thumb"></span>
-            <span class="work-info"><strong></strong><small></small></span>
-          </button>
-           <button class="work"
-            data-cat="personal-artwork"
-            data-title="Harimau Malaya — Football Poster Design"
-            data-desc="Created a dynamic football poster celebrating Harimau Malaya, combining a large player portrait with a smaller full-body action image to create depth, visual impact and a strong sporting atmosphere."
-            data-img="assets/images/personal-artwork/personal artworks-poster-01.webp"
-            data-more="assets/images/personal-artwork/personal artworks-poster-02.webp, assets/images/personal-artwork/personal artworks-poster-03.webp, assets/images/personal-artwork/personal artworks-poster-04.webp"
-            data-meta="Client: Personal"
-            style="--a:#3c315f;--b:#172340">
-            <span class="thumb"></span>
-            <span class="work-info"><strong></strong><small></small></span>
-          </button>
-          <button class="work"
+          <button type="button" class="work" data-featured
             data-cat="exhibition-print"
             data-title="Kooka Paper — Exhibition Backdrop Design"
             data-desc="Designed exhibition backdrop visuals showcasing Kooka Paper's product range, manufacturing capabilities and company credentials through a clean, structured presentation."
@@ -211,20 +108,31 @@
             data-meta="Client: Kooka Paper Manufacturing Sdn. Bhd."
             style="--a:#3c315f;--b:#172340">
             <span class="thumb"></span>
-            <span class="work-info"><strong></strong><small></small></span>
+            <span class="work-info"><strong>Kooka Paper — Exhibition Backdrop Design</strong><small>Exhibition &amp; print</small></span>
           </button>
-          <button class="work"
-            data-cat="exhibition-print"
-            data-title="Kooka Paper — Corporate Exhibition Display"
-            data-desc="Created corporate exhibition graphics highlighting the company's history, product solutions and key business strengths through a professional blue visual direction."
-            data-img="assets/images/exhibition-print/exhibition print-kooka-03.webp"
-            data-more="assets/images/exhibition-print/exhibition print-kooka-04.webp"
-            data-meta="Client: Kooka Paper Manufacturing Sdn. Bhd."
+          <button type="button" class="work" data-featured
+            data-cat="marketing-social"
+            data-title="Hesmart — Product Showcase"
+            data-desc="Created product-focused social media visuals showcasing Kitmens's Oven features, technology and capabilities."
+            data-img="assets/images/marketing-social/Kitmens/kitmens-social-collection-01.webp"
+            data-more="assets/images/marketing-social/Kitmens/kitmens-social-collection-01-02.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-01-03.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-01-04.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-01-05.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-01-06.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-01-07.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-01-08.webp"
+            data-meta="Client: Kitmens Sdn. Bhd."
             style="--a:#3c315f;--b:#172340">
             <span class="thumb"></span>
-            <span class="work-info"><strong></strong><small></small></span>
+            <span class="work-info"><strong>Hesmart — Product Showcase</strong><small>Marketing &amp; social</small></span>
           </button>
-          <button class="work"
+          <button type="button" class="work" data-featured
+            data-cat="personal-artwork"
+            data-title="Harimau Malaya — Football Poster Design"
+            data-desc="Created a dynamic football poster celebrating Harimau Malaya, combining a large player portrait with a smaller full-body action image to create depth, visual impact and a strong sporting atmosphere."
+            data-img="assets/images/personal-artwork/personal artworks-poster-01.webp"
+            data-more="assets/images/personal-artwork/personal artworks-poster-02.webp, assets/images/personal-artwork/personal artworks-poster-03.webp, assets/images/personal-artwork/personal artworks-poster-04.webp"
+            data-meta="Client: Personal"
+            style="--a:#3c315f;--b:#172340">
+            <span class="thumb"></span>
+            <span class="work-info"><strong>Harimau Malaya — Football Poster Design</strong><small>Personal artwork</small></span>
+          </button>
+          <button type="button" class="work" data-featured
             data-cat="exhibition-print"
             data-title="Kooka Paper — Exhibition Booth Design"
             data-desc="Developed exhibition booth graphics and spatial visual elements to create a cohesive brand presentation while showcasing Kooka Paper's products and identity."
@@ -233,66 +141,164 @@
             data-meta="Client: Kooka Paper Manufacturing Sdn. Bhd."
             style="--a:#3c315f;--b:#172340">
             <span class="thumb"></span>
-            <span class="work-info"><strong></strong><small></small></span>
+            <span class="work-info"><strong>Kooka Paper — Exhibition Booth Design</strong><small>Exhibition &amp; print</small></span>
           </button>
-          <button class="work"
+          <button type="button" class="work" data-featured
+            data-cat="marketing-social"
+            data-title="Kooka Paper — Social Media Campaign"
+            data-desc="Designed promotional social media visuals highlighting Kooka Paper's products, manufacturing capabilities and sustainability initiatives."
+            data-img="assets/images/marketing-social/kooka-social-collection.webp"
+            data-more="assets/images/marketing-social/kooka-post-02.webp, assets/images/marketing-social/kooka-post-03.webp, assets/images/marketing-social/kooka-post-04.webp, assets/images/marketing-social/kooka-post-05.webp, assets/images/marketing-social/kooka-post-06.webp, assets/images/marketing-social/kooka-post-07.webp, assets/images/marketing-social/kooka-post-08.webp, assets/images/marketing-social/kooka-post-09.webp, assets/images/marketing-social/kooka-post-10.webp, assets/images/marketing-social/kooka-post-11.webp"
+            data-meta="Client: Kooka Paper Manufacturing Sdn. Bhd."
+            style="--a:#3c315f;--b:#172340">
+            <span class="thumb"></span>
+            <span class="work-info"><strong>Kooka Paper — Social Media Campaign</strong><small>Marketing &amp; social</small></span>
+          </button>
+          <button type="button" class="work" data-featured
+            data-cat="marketing-social"
+            data-title="Kitmens Exclusive Showcase — Event Promotion"
+            data-desc="Developed event promotional materials featuring the exclusive showcase, baking demonstrations and guest chefs."
+            data-img="assets/images/marketing-social/Kitmens/kitmens-social-collection-05.webp"
+            data-more="assets/images/marketing-social/Kitmens/kitmens-social-collection-05-29.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-05-30.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-05-31.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-05-32.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-05-33.webp"
+            data-meta="Client: Kitmens Sdn. Bhd."
+            style="--a:#3c315f;--b:#172340">
+            <span class="thumb"></span>
+            <span class="work-info"><strong>Kitmens Exclusive Showcase — Event Promotion</strong><small>Marketing &amp; social</small></span>
+          </button>
+          <button type="button" class="work"
+            data-cat="exhibition-print"
+            data-title="Kooka Paper — Corporate Exhibition Display"
+            data-desc="Created corporate exhibition graphics highlighting the company's history, product solutions and key business strengths through a professional blue visual direction."
+            data-img="assets/images/exhibition-print/exhibition print-kooka-03.webp"
+            data-more="assets/images/exhibition-print/exhibition print-kooka-04.webp"
+            data-meta="Client: Kooka Paper Manufacturing Sdn. Bhd."
+            style="--a:#3c315f;--b:#172340">
+            <span class="thumb"></span>
+            <span class="work-info"><strong>Kooka Paper — Corporate Exhibition Display</strong><small>Exhibition &amp; print</small></span>
+          </button>
+          <button type="button" class="work"
+            data-cat="marketing-social"
+            data-title="Seazons — Social Media Campaign"
+            data-desc="Created engaging social media visuals to promote Seazons products and strengthen brand awareness."
+            data-img="assets/images/marketing-social/seazons-social-collection.webp"
+            data-more="assets/images/marketing-social/seazons-post-01.webp, assets/images/marketing-social/seazons-post-02.webp, assets/images/marketing-social/seazons-post-03.webp, assets/images/marketing-social/seazons-post-04.webp, assets/images/marketing-social/seazons-post-05.webp, assets/images/marketing-social/seazons-post-06.webp, assets/images/marketing-social/seazons-post-07.webp, assets/images/marketing-social/seazons-post-08.webp, assets/images/marketing-social/seazons-post-09.webp, assets/images/marketing-social/seazons-post-10.webp, assets/images/marketing-social/seazons-post-11.webp, assets/images/marketing-social/seazons-post-12.webp, assets/images/marketing-social/seazons-post-13.webp"
+            data-meta="Client: Kooka Paper Manufacturing Sdn. Bhd."
+            style="--a:#3c315f;--b:#172340">
+            <span class="thumb"></span>
+            <span class="work-info"><strong>Seazons — Social Media Campaign</strong><small>Marketing &amp; social</small></span>
+          </button>
+          <button type="button" class="work"
+            data-cat="marketing-social"
+            data-title="Stand Mixer — Product Promotion"
+            data-desc="Designed promotional visuals highlighting the stand mixer's versatility and multifunctional attachments."
+            data-img="assets/images/marketing-social/Kitmens/kitmens-social-collection-02.webp"
+            data-more="assets/images/marketing-social/Kitmens/kitmens-social-collection-02-10.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-02-11.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-02-12.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-02-13.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-02-14.webp"
+            data-meta="Client: Kitmens Sdn. Bhd."
+            style="--a:#3c315f;--b:#172340">
+            <span class="thumb"></span>
+            <span class="work-info"><strong>Stand Mixer — Product Promotion</strong><small>Marketing &amp; social</small></span>
+          </button>
+          <button type="button" class="work"
+            data-cat="marketing-social"
+            data-title="Mother's Day — Social Media Campaign"
+            data-desc="Created a seasonal campaign combining Mother's Day messaging with product promotions and gift ideas."
+            data-img="assets/images/marketing-social/Kitmens/kitmens-social-collection-03.webp"
+            data-more="assets/images/marketing-social/Kitmens/kitmens-social-collection-03-16.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-03-17.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-03-18.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-03-19.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-03-20.webp"
+            data-meta="Client: Kitmens Sdn. Bhd."
+            style="--a:#3c315f;--b:#172340">
+            <span class="thumb"></span>
+            <span class="work-info"><strong>Mother's Day — Social Media Campaign</strong><small>Marketing &amp; social</small></span>
+          </button>
+          <button type="button" class="work"
+            data-cat="marketing-social"
+            data-title="Cordless Hand Mixer — Product Campaign"
+            data-desc="Designed engaging promotional content highlighting the convenience and features of the cordless hand mixer."
+            data-img="assets/images/marketing-social/Kitmens/kitmens-social-collection-04.webp"
+            data-more="assets/images/marketing-social/Kitmens/kitmens-social-collection-04-22.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-04-23.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-04-24.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-04-25.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-04-26.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-04-27.webp"
+            data-meta="Client: Kitmens Sdn. Bhd."
+            style="--a:#3c315f;--b:#172340">
+            <span class="thumb"></span>
+            <span class="work-info"><strong>Cordless Hand Mixer — Product Campaign</strong><small>Marketing &amp; social</small></span>
+          </button>
+          <button type="button" class="work"
+            data-cat="marketing-social"
+            data-title="Stand Mixer — Features &amp; Benefits"
+            data-desc="Created product marketing visuals communicating key features, usability and benefits of Kitmens kitchen appliances."
+            data-img="assets/images/marketing-social/Kitmens/kitmens-social-collection-06.webp"
+            data-more="assets/images/marketing-social/Kitmens/kitmens-social-collection-06-35.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-06-36.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-06-37.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-06-38.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-06-39.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-06-40.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-06-41.webp"
+            data-meta="Client: Kitmens Sdn. Bhd."
+            style="--a:#3c315f;--b:#172340">
+            <span class="thumb"></span>
+            <span class="work-info"><strong>Stand Mixer — Features &amp; Benefits</strong><small>Marketing &amp; social</small></span>
+          </button>
+          <button type="button" class="work"
+            data-cat="marketing-social"
+            data-title="Compact Stand Mixer — Product Promotion"
+            data-desc="Designed promotional visuals highlighting the compact design, functionality and everyday convenience of the stand mixer."
+            data-img="assets/images/marketing-social/Kitmens/kitmens-social-collection-07.webp"
+            data-more="assets/images/marketing-social/Kitmens/kitmens-social-collection-07-43.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-07-44.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-07-45.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-07-46.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-07-47.webp, assets/images/marketing-social/Kitmens/kitmens-social-collection-07-48.webp"
+            data-meta="Client: Kitmens Sdn. Bhd."
+            style="--a:#3c315f;--b:#172340">
+            <span class="thumb"></span>
+            <span class="work-info"><strong>Compact Stand Mixer — Product Promotion</strong><small>Marketing &amp; social</small></span>
+          </button>
+          <button type="button" class="work"
             data-cat="marketing-social"
             data-title="Conventional Oven — E-commerce Product Listing"
             data-desc="Designed a multi-slide product listing carousel showcasing the conventional oven's features, cooking capabilities, product details and customer benefits."
-            data-img="assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-01.webp"
-            data-more="assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-01-02.webp, assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-01-03.webp, assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-01-04.webp, assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-01-05.webp, assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-01-06.webp, assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-01-07.webp, assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-01-08.webp"
+            data-img="assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-01.webp"
+            data-more="assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-01-02.webp, assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-01-03.webp, assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-01-04.webp, assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-01-05.webp, assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-01-06.webp, assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-01-07.webp, assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-01-08.webp"
             data-meta="Client: Kitmens Sdn. Bhd."
             style="--a:#3c315f;--b:#172340">
             <span class="thumb"></span>
-            <span class="work-info"><strong></strong><small></small></span>
+            <span class="work-info"><strong>Conventional Oven — E-commerce Product Listing</strong><small>Marketing &amp; social</small></span>
           </button>
-          <button class="work"
+          <button type="button" class="work"
             data-cat="marketing-social"
             data-title="Stand Mixer — E-commerce Product Listing"
             data-desc="Created product listing visuals highlighting the stand mixer's capacity, functionality, key features, specifications and versatility for everyday baking."
-            data-img="assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-02.webp"
-            data-more="assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-02-10.webp, assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-02-11.webp, assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-02-12.webp, assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-02-13.webp, assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-02-14.webp, assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-02-15.webp, assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-02-16.webp"
+            data-img="assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-02.webp"
+            data-more="assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-02-10.webp, assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-02-11.webp, assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-02-12.webp, assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-02-13.webp, assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-02-14.webp, assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-02-15.webp, assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-02-16.webp"
             data-meta="Client: Kitmens Sdn. Bhd."
             style="--a:#3c315f;--b:#172340">
             <span class="thumb"></span>
-            <span class="work-info"><strong></strong><small></small></span>
+            <span class="work-info"><strong>Stand Mixer — E-commerce Product Listing</strong><small>Marketing &amp; social</small></span>
           </button>
-          <button class="work"
+          <button type="button" class="work"
             data-cat="marketing-social"
             data-title="Cordless Hand Mixer — E-commerce Product Listing"
             data-desc="Developed a product carousel presenting the cordless hand mixer's portability, convenience, key features and practical applications through product and lifestyle visuals."
-            data-img="assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-03.webp"
-            data-more="assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-03-18.webp, assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-03-19.webp, assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-03-20.webp, assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-03-21.webp, assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-03-22.webp, assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-03-23.webp, assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-03-24.webp"
+            data-img="assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-03.webp"
+            data-more="assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-03-18.webp, assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-03-19.webp, assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-03-20.webp, assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-03-21.webp, assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-03-22.webp, assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-03-23.webp, assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-03-24.webp"
             data-meta="Client: Kitmens Sdn. Bhd."
             style="--a:#3c315f;--b:#172340">
             <span class="thumb"></span>
-            <span class="work-info"><strong></strong><small></small></span>
+            <span class="work-info"><strong>Cordless Hand Mixer — E-commerce Product Listing</strong><small>Marketing &amp; social</small></span>
           </button>
-          <button class="work"
+          <button type="button" class="work"
             data-cat="marketing-social"
             data-title="KM-B7 Premium Stand Mixer — E-commerce Product Listing"
             data-desc="Designed a premium product listing presentation featuring the KM-B7's specifications, performance highlights, included accessories and premium product positioning."
-            data-img="assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-04.webp"
-            data-more="assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-04-26.webp, assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-04-27.webp, assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-04-28.webp, assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-04-29.webp, assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-04-30.webp, assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-04-31.webp, assets\images\marketing-social\marketplace\marketing-marketplace-kitmens-04-32.webp"
+            data-img="assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-04.webp"
+            data-more="assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-04-26.webp, assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-04-27.webp, assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-04-28.webp, assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-04-29.webp, assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-04-30.webp, assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-04-31.webp, assets/images/marketing-social/marketplace/marketing-marketplace-kitmens-04-32.webp"
             data-meta="Client: Kitmens Sdn. Bhd."
             style="--a:#3c315f;--b:#172340">
             <span class="thumb"></span>
-            <span class="work-info"><strong></strong><small></small></span>
+            <span class="work-info"><strong>KM-B7 Premium Stand Mixer — E-commerce Product Listing</strong><small>Marketing &amp; social</small></span>
           </button>
-          
         </div>
       </section>
     </main>
   </div>
 
-  <dialog id="viewer" aria-label="Project viewer">
-    <button class="v-close" aria-label="Close">&times;</button>
+  <dialog id="viewer" aria-labelledby="v-title">
+    <button type="button" class="v-close" aria-label="Close">&times;</button>
 
     <div class="v-stage">
       <div class="v-slide"></div>
-      <button class="v-nav v-prev" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
-      <button class="v-nav v-next" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
-      <span class="v-count"></span>
+      <button type="button" class="v-nav v-prev" aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button type="button" class="v-nav v-next" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      <span class="v-count" aria-live="polite"></span>
     </div>
 
     <aside class="v-info">

@@ -2,9 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
   <meta name="description" content="Learn about Fathi Afiq, a Senior Graphic Designer with 5+ years of experience in brand communications, packaging, digital marketing, multimedia production and creative technology.">
   <meta name="theme-color" content="#0a0716">
+  <meta property="og:title" content="About | Fathi Afiq">
+  <meta property="og:description" content="Senior Graphic Designer based in Malaysia with 5+ years spanning packaging, print, exhibitions, e-commerce, and creative workflow automation.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/profile/profile.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
   <title>About | Fathi Afiq</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,6 +19,7 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   <div class="app">
 
     <!-- SIDEBAR: same block as index.html; only aria-current moves -->
@@ -20,11 +27,11 @@
       <div class="profile">
         <div class="avatar">
           <span>FA</span>
-          <img alt="Fathi Afiq">
+          <img src="assets/images/profile/profile.webp" alt="Fathi Afiq">
         </div>
         <div class="who">
-          <h2>Fathi <span class="af">Afiq</span></h2>
-          <div class="ticker" aria-label="Senior Graphic Designer, Multimedia and Creative Production">
+          <p class="who-name">Fathi <span class="af">Afiq</span></p>
+          <div class="ticker" role="note" aria-label="Senior Graphic Designer, Multimedia and Creative Production">
             <div class="ticker-track" aria-hidden="true">
               <span>Senior Graphic Designer</span>
               <span>Multimedia Production</span>
@@ -38,19 +45,19 @@
 
       <nav class="nav" aria-label="Main">
         <a href="index.html" data-label="Home" aria-label="Home">
-          <svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></svg>
         </a>
         <a href="about.html" data-label="About" aria-label="About" aria-current="page">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
         </a>
         <a href="resume.html" data-label="Resume" aria-label="Resume">
-          <svg viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h6"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h6"/></svg>
         </a>
         <a href="portfolio.html" data-label="Portfolio" aria-label="Portfolio">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
         </a>
         <a href="contact.html" data-label="Contact" aria-label="Contact">
-          <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
         </a>
       </nav>
 
@@ -61,7 +68,7 @@
       </div>
     </aside>
 
-    <main class="main main-about">
+    <main class="main main-about" id="main-content">
 
       <section class="content">
         <h1 class="about-title">About me</h1>
@@ -71,30 +78,12 @@
           <p>I bring projects from initial planning through design, content development, video editing and final production. Throughout my career, I've worked closely with founders, sales and marketing teams, and senior management to develop creative materials that are both visually consistent and commercially relevant.</p>
           <p>My experience spans packaging artwork and catalogues, e-commerce platforms, social media campaigns, promotional videos and exhibition materials prepared for trade shows in South Korea, the United States and Australia. I'm now looking to bring this experience into a Senior Graphic Designer role where I can contribute across creative development, production and team collaboration.</p>
         </div>
-
-        <div class="trio">
-          <article class="box hov draw">
-            <span class="ico"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><path d="M8 6h6a4 4 0 0 1 4 4v6"/></svg></span>
-            <h2>How I work</h2>
-            <p>I approach projects from brief to delivery, combining content planning, visual development, multimedia production and print preparation. At Kitmens, I handled creative projects end to end and worked directly with the founder. Across my roles, I've also collaborated with sales, marketing and management teams to align creative output with project requirements.</p>
-          </article>
-          <article class="box hov draw">
-            <span class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg></span>
-            <h2>What I design</h2>
-            <p>I create brand and marketing visuals, packaging artwork, product catalogues, exhibition materials, e-commerce storefronts and product listings, social media campaigns, promotional videos and motion graphics. My experience covers both digital and print production, allowing me to adapt creative work to different platforms and audiences.</p>
-          </article>
-          <article class="box hov draw">
-            <span class="ico"><svg viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18"/></svg></span>
-            <h2>Beyond design</h2>
-            <p>I look beyond visual execution to find practical ways to improve creative and production workflows. At Kooka Paper, I developed an AI-assisted Adobe Illustrator tool that generates carton dielines from specified dimensions. At Hasmadi Textile, I built an e-commerce website from the ground up and managed Facebook advertising campaigns, combining creative work with digital operations and marketing.</p>
-          </article>
-        </div>
       </section>
 
       <aside class="side" aria-label="At a glance">
 
         <div class="box loc">
-          <span class="ico"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+          <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
           <div><small>Based in</small><strong>Malaysia</strong></div>
         </div>
 
@@ -120,6 +109,24 @@
         </div>
 
       </aside>
+
+      <div class="trio">
+        <article class="box hov draw">
+          <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><path d="M8 6h6a4 4 0 0 1 4 4v6"/></svg></span>
+          <h2>How I work</h2>
+          <p>I approach projects from brief to delivery, combining content planning, visual development, multimedia production and print preparation. At Kitmens, I handled creative projects end to end and worked directly with the founder. Across my roles, I've also collaborated with sales, marketing and management teams to align creative output with project requirements.</p>
+        </article>
+        <article class="box hov draw">
+          <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg></span>
+          <h2>What I design</h2>
+          <p>I create brand and marketing visuals, packaging artwork, product catalogues, exhibition materials, e-commerce storefronts and product listings, social media campaigns, promotional videos and motion graphics. My experience covers both digital and print production, allowing me to adapt creative work to different platforms and audiences.</p>
+        </article>
+        <article class="box hov draw">
+          <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18"/></svg></span>
+          <h2>Beyond design</h2>
+          <p>I look beyond visual execution to find practical ways to improve creative and production workflows. At Kooka Paper, I developed an AI-assisted Adobe Illustrator tool that generates carton dielines from specified dimensions. At Hasmadi Textile, I built an e-commerce website from the ground up and managed Facebook advertising campaigns, combining creative work with digital operations and marketing.</p>
+        </article>
+      </div>
     </main>
   </div>
 
